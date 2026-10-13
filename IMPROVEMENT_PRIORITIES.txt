@@ -1,0 +1,14 @@
+Suggested work before a wider stable release (not implemented in this repair)
+
+1. Run hands-on testing of both manual sides and point switching with several
+   hydrogeologists; improve feedback wherever an action appears to do nothing.
+2. Add automatic draft saving and crash recovery, with a clear list of saved sites.
+3. Validate representative catchments against independently reviewed local
+   hydrogeological interpretations; record contour age, aquifer and stopping reason.
+4. Test current supported QGIS 3 releases on Windows, Linux and macOS. Port and
+   test separately for QGIS 4 / Qt 6 before expanding the declared version range.
+5. Show clear dependency diagnostics and progress/cancellation on large contour
+   plans. Preserve export settings and add a compact result report.
+
+The current repair only separates starting a new manual drawing from resuming
+the old one. It also protects the old draft during save/cancel/failure handling.

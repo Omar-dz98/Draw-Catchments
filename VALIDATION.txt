@@ -1,0 +1,28 @@
+Draw Catchments 0.1.13 - validation summary
+
+Security-scan repair
+The previous QGIS Plugin Repository scan reported one Bandit warning at
+service.py's user-facing error message. The flagged text was not a SQL query
+and the plugin does not construct or execute SQL there. The message has been
+rephrased to avoid the scanner's false-positive pattern. The two Flake8 E741
+findings in plugin.py were fixed by replacing ambiguous one-letter lambda and
+comprehension variables with descriptive names. The local environment did not
+have Bandit or Flake8 installed, so these scanners were not run locally. The
+new repository upload must be rescanned by the QGIS Plugins site.
+
+Executed tests
+- QGIS 3.36.3 / Windows: 119 automated tests passed.
+- The actual 0.1.13 installer ZIP was loaded using QGIS's plugin loader and
+  its dialog was opened with real Qt widgets in offscreen mode.
+- The packaged example generated a valid editable polygon; point-specific
+  operation and the separate New / Resume manual drawing controls passed.
+- A new manual polygon was generated from a different selected point and
+  checked for valid geometry and containment of that point.
+- Installer ZIP structure and metadata were checked; it contains the one
+  top-level draw_catchments plugin folder and excludes docs from installation.
+
+Limits
+The QGIS desktop itself was not operated interactively during this validation.
+The automated checks verify software behavior and geometry construction, not
+hydrogeological accuracy. Keep the release marked experimental and review each
+proposal against appropriate local hydrogeological information.

@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.idea/
+.vscode/
+dist/
+outputs/
+test_data/raw/
+*.zip
+*.qgs~
+*.qgz~
+*.gpkg-shm
+*.gpkg-wal
+.DS_Store
+Thumbs.db

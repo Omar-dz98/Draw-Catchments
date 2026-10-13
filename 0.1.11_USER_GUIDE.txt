@@ -1,0 +1,36 @@
+Draw Catchments — quick guide
+Created by Omar Brahimi
+
+Load your groundwater contour line layer and a well/monitoring-point layer.
+Choose the contour layer, its hydraulic-head field, and one point or a well group.
+
+YOUR ARC ENDPOINTS
+Click Place arc endpoints on map, then click the two positions around the well.
+The orange preview shows the closure. The same points start the two uphill sides.
+The default depth is half their separation; Arc depth changes the bulge.
+This is your geometric closing boundary, not a pumping-derived capture limit.
+The final polygon must contain the selected well(s).
+
+AUTOMATIC
+Draw catchment follows the head gradient. Automatic extent expansion now continues
+beyond the initial radius when the upstream paths meet its edge and more source
+contours exist. Highest connected contour closes on a real shared contour and
+does not certify a divide. To specify where to reach, use Marked upstream target
+area or Custom boundary layer. The target/boundary must be reached by both sides.
+
+MANUAL
+Draw straight boundary steps manually. Closest feasible to 90 degrees is the default:
+prefer exact normals, otherwise show the actual angle of a clear straight candidate.
+Only the well closure is curved. Add next contour accepts the orange preview;
+clicking farther includes intervening contours. Exact 90 degrees only is optional.
+Switch side, finish both sides on the same contour, then Finish & export.
+Place arc endpoints in the floating panel before drawing, or undo both sides first.
+
+SAVE
+Finish & export saves a polygon. Save drawing draft saves unfinished drawing.
+GeoPackage preserves the polygon, original, paths, endpoints and closing boundaries.
+
+INSTALL
+Plugins > Manage and Install Plugins > Install from ZIP.
+Select the supplied ZIP, replace the existing installation, and restart QGIS.
+Open Vector > Draw Catchments or its toolbar icon.

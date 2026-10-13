@@ -1,0 +1,56 @@
+Draw Catchments - upload instructions
+Creator: Omar Brahimi
+Repository: https://github.com/Omar-dz98/Draw-Catchments
+
+QGIS UPLOAD FILE: Draw_Catchments-0.1.13.zip
+The Publication_Kit.zip and GitHub_Source.zip are preparation archives, not
+installable QGIS plugins. Screenshots, testing notes and this guide stay here;
+the plugin installer contains runtime files, basic help, license and its example.
+
+1. COMPLETE CONTACT METADATA
+The author email must be a real contact address you accept making public.
+In plugin/draw_catchments/metadata.txt, complete email= if empty.
+Repository/homepage/issue links are already set. A helper is also provided:
+  python tools/set_contact.py YOUR_EMAIL_ADDRESS
+Then build from the repository root using Python:
+  python tools/build_plugin.py
+The resulting dist/Draw_Catchments-0.1.13.zip is the QGIS upload package.
+If a final ZIP with your supplied email is included in this kit, use that file.
+
+2. UPLOAD SOURCE FILES TO GITHUB
+Open https://github.com/Omar-dz98/Draw-Catchments.
+On an empty repository, choose the link to upload existing files. Otherwise use
+Add file > Upload files. Open the local GitHub_Source folder and upload its
+CONTENTS: plugin, tests, tools, docs, test_data, assets, README.md, LICENSE,
+DATA_SOURCES.md, CONTRIBUTING.md, .gitignore and .github.
+Keep the directory structure: README.md must appear at the repository root.
+Use the commit message: Add Draw Catchments source and documentation.
+Commit the files. Do not upload the source ZIP as a substitute for browsable code.
+Do not upload dist, outputs or the publication kit into the source repository.
+If using Explorer, enable hidden items so .github and .gitignore are included.
+
+3. VERIFY THE PUBLIC LINKS
+Open the repository while signed out. Check the README, LICENSE and
+plugin/draw_catchments/metadata.txt are readable. Open https://github.com/Omar-dz98/Draw-Catchments/issues.
+Enable Issues in repository settings if needed. Confirm the source matches the
+plugin ZIP. The build script checks local files; it cannot approve public links.
+
+4. UPLOAD THE PLUGIN TO QGIS
+Sign in or register at https://plugins.qgis.org/ . Choose Upload a plugin.
+Upload Draw_Catchments-0.1.13.zip, not GitHub_Source.zip or this kit ZIP.
+Keep Experimental enabled for initial public testing. Review name, author,
+email, compatibility and source links. Screenshots and listing text are included.
+Submission starts automated security checks and then approval; an uploaded file
+is not automatically an approved public listing. Review messages and fix reported
+issues. Other QGIS releases and operating systems still require testing.
+
+5. OPTIONAL GITHUB DOWNLOAD
+Create a GitHub Release from the same committed source and attach the plugin ZIP.
+Use RELEASE_NOTES.txt as the release text. Installers go in Releases, not the
+source tree. Future public updates should use a higher plugin version and matching
+source, run tests, and be uploaded to the existing QGIS plugin entry.
+
+Official references checked 13 October 2026:
+https://plugins.qgis.org/docs/publish
+https://plugins.qgis.org/docs/approval
+https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository

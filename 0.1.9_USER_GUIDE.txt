@@ -1,0 +1,56 @@
+DRAW CATCHMENTS 0.1.9 — Created by Omar Brahimi
+
+INSTALL AND CONFIRM
+Save unfinished work using Save drawing draft before upgrading. Install
+Draw_Catchments-0.1.9.zip through Plugins > Manage and Install Plugins > Install
+from ZIP, then fully close and reopen QGIS. The main dialog AND the floating
+manual panel must say 0.1.9. An already open 0.1.8 panel still runs the old code.
+
+DRAW A BOUNDARY
+1. Choose the original groundwater contour layer and hydraulic-head field
+   (ZLEVEL for the LfU contours), then pick one point on the map.
+2. Choose Downstream closure: Rounded arc around point. Arc depth 0 means half
+   the starting width; any positive value is the depth in metres.
+3. Click Draw boundary steps manually at 90 degrees.
+4. The orange solid preview proposes a connection to the next higher contour.
+   Click Add next contour to accept it. Or click a farther higher contour: the
+   tool includes intermediate contours in order, instead of rejecting the click
+   simply because a contour lies between. Hover previews the complete proposal.
+5. Green is committed work. The panel reports how many steps were added and
+   their ending head. Switch side and draw the second boundary. End both sides
+   on the same connected contour. Undo last step affects the active side.
+6. The dashed orange arc closes around the selected point(s). Change its depth
+   or switch to Straight in the floating panel to update its preview immediately.
+7. Click Finish & export, choose a filename, and save as GeoPackage, Shapefile
+   or GeoJSON. This creates an actual polygon. GeoPackage also saves the original
+   polygon, paths, start points, upstream contour arc and downstream closure.
+   Save drawing draft saves unfinished work to JSON; it is not a polygon export.
+
+WHAT CHANGED
+The old Straight 90-degree mode blocked useful drawing. Now a manual connector
+may curve smoothly between contours. It meets the original destination segment
+at 90 degrees, and subsequent smooth steps leave in the same normal direction.
+Curvature is distributed across the guide, not a long diagonal with a tiny
+right-angle tip. Intersections, skipped contours and sharp kinks are checked.
+Clicks select a contour; computed endpoints may move along it. Inspect preview.
+The right-angle marker shows the local arrival, not the chord of a curved guide.
+Some source geometry can still prevent a route: no crossing or invented polygon
+is forced. The error preserves the drawing. Try another part of the contour,
+undo the last step, or adjust the starts. Lower contours are not uphill targets.
+Old bent 0.1.7 drafts remain readable but need offending steps undone/redrawn.
+
+MITTENWALDE EXAMPLE
+LfU spring 2015 monitoring station FID 382, observed head 65.15 m, original
+contour field ZLEVEL. The estimated starting heads are approximately 66.05 m;
+these come from the contours, not the station label. The next uphill line is
+67 m. Draw each side through 67 to 73 m, then Finish & export. The 73 m line is
+an example selected closure, not a demonstrated groundwater divide.
+
+LIMITS
+The rounded downstream arc, starting width and manual interpolation are explicit
+geometric assumptions. They do not determine hydraulic capture width or a true
+catchment. No pumping, recharge, travel-time or anisotropy model is included.
+Perpendicularity is measured against original polyline segments in the projected
+calculation CRS. A polyline corner has no unique tangent. Ordinary QGIS edits
+are unconstrained. Automatic flow tracing still uses the reconstructed gradient
+and is approximate; the strict manual normal condition does not apply to it.
