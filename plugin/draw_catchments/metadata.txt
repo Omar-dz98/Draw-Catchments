@@ -1,0 +1,28 @@
+[general]
+name=Draw Catchments
+description=A QGIS tool for drawing preliminary groundwater catchment areas from groundwater contours.
+about=Draw Catchments creates preliminary groundwater catchment polygons around wells, monitoring stations and selected map locations using groundwater contour lines.
+    
+    It combines automatic hydraulic-gradient tracing with manual contour-based boundary drawing. Adjustable starting widths, an optional rounded closure around the well and editable polygons support hydrogeological interpretation directly on the QGIS map.
+    
+    The plugin preserves boundary paths and original calculations for comparison and supports export to GeoPackage, Shapefile and GeoJSON.
+    
+    Results are geometric proposals for hydrogeological review. The tool does not model pumping, recharge or capture width.
+    
+    Requires NumPy and SciPy in the QGIS Python environment.
+version=0.1.12
+qgisMinimumVersion=3.36
+qgisMaximumVersion=3.99
+author=Omar Brahimi
+email=omarfarouk.brahimi@gmail.com
+homepage=https://github.com/Omar-dz98/Draw-Catchments#readme
+repository=https://github.com/Omar-dz98/Draw-Catchments
+tracker=https://github.com/Omar-dz98/Draw-Catchments/issues
+category=Vector
+tags=groundwater,catchment,hydrogeology,contours,flowpaths
+icon=icon.png
+experimental=True
+deprecated=False
+hasProcessingProvider=False
+license=GPL-3.0-or-later
+changelog=

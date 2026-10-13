@@ -1,0 +1,95 @@
+DRAW CATCHMENTS 0.1.6 - Created by Omar Brahimi
+
+INSTALL / UPDATE
+QGIS: Plugins > Manage and Install Plugins > Install from ZIP.
+Choose Draw_Catchments-0.1.6.zip, install, then restart QGIS.
+The dialog heading must say Draw Catchments 0.1.6.
+
+
+INPUT SELECTION FIX IN 0.1.6
+Choose the original groundwater contour layer, not an earlier output such as
+"75 m contour closure | artificial limit". That closure is only one boundary
+segment. Its fid field is a feature identifier, not a hydraulic-head value.
+
+For the supplied LfU project:
+  Contour layer: Groundwater contours | spring 2015 | ZLEVEL m NHN
+  Head field: Hydraulic head (m NHN), the alias of ZLEVEL
+  Use: One point; keep the individual point you want to work on.
+Then click Draw boundary steps manually at 90 degrees.
+
+The new dropdown excludes generated boundary layers, including exported
+results reimported without QGIS properties. It suggests recognized numeric
+head fields when you change contour layers and remembers your custom choice.
+For a plan with another field name, select its numeric head field yourself;
+the plugin leaves it blank instead of silently using fid.
+
+AUTOMATIC WORKFLOW
+1. Choose your own groundwater contour line layer and numeric head field.
+2. Pick one point on the map, or choose One point and its entry in the dropdown.
+3. Keep Starting width = Automatic geometric proposal, or enter a chosen width.
+4. Click Mark upstream target area on map.
+5. Click two opposite corners of a rectangle around the upstream groundwater
+   high you want the paths to reach. A purple dashed rectangle shows the target.
+6. Click Draw catchment.
+
+The target expands the analysis area and tracing budget automatically. Both
+boundary endpoints must enter that area and close on a shared higher contour.
+If they cannot, the plugin reports failure rather than returning a short polygon.
+The target does not force a path across a divide or against the local gradient.
+
+No contour-spacing distance cutoff is applied by default. Widely separated
+contours can be used. The initial analysis radius expands when it does not
+include surrounding contours. A manual spacing limit is optional under
+Calculation settings. Maximum support gap is NOT the catchment starting width.
+The plugin still needs at least three different head contours surrounding the
+point; coordinates alone, missing coverage or contradictory heads are not enough.
+
+You can use Highest connected contour without marking a target. That mode uses
+the current analysis area; it does not search the entire map for a distant high.
+Use the target rectangle to specify a particular upstream high beyond that area.
+
+MANUAL 90-DEGREE ARRIVALS
+1. Choose contours, one point (or a well group), and starting width as above.
+   A target is optional; manual stepping can use the full selected contour layer.
+2. Click Draw boundary steps manually at 90 degrees.
+3. The active starting point is orange; the other is purple. Move the pointer
+   over the next higher contour to see an orange preview of the connection.
+4. Click the desired contour segment. The tool snaps the arrival to 90 degrees
+   relative to that actual source polyline segment. Where a straight normal
+   cannot connect, the preview adds a short bend before the perpendicular arrival.
+5. Keep clicking successive higher contours. Skipped contours, downhill crossings
+   and intersecting side boundaries are rejected. Zoom in to choose another
+   contour segment when necessary.
+6. Right-click to switch to side 2, and draw its steps.
+7. End both sides on the same contour. Right-click again to close the polygon
+   along that contour. The polygon must contain the chosen point / wells.
+
+Backspace = undo the last step on the active side.
+Tab = switch sides while drawing.
+Esc = cancel manual drawing and return to the dialog.
+The 90-degree constraint applies to the arrival of each lateral step. It does
+not apply to the upstream contour arc or the downstream closing edge.
+
+SAVE AND EDIT
+Outputs are temporary until exported. Export catchment > GeoPackage preserves
+the editable polygon, original, boundary paths, starts, target and contour cap.
+Edit catchment starts normal QGIS vertex editing. Normal QGIS editing does not
+retain the manual 90-degree constraint; use the stepping tool for constrained
+construction. Full calculation settings are written to a JSON sidecar.
+
+REAL EXAMPLE: TIEFENSEE / LFU SPRING 2015
+Contour field ZLEVEL (alias Hydraulic head (m NHN)); point Tiefensee [FID 879],
+station MKZ 33485041. Mark the 86 m groundwater high northeast of the station.
+Both automatic and manually guided polygons were generated to that contour.
+The station is a monitoring point, not a claimed production well.
+
+ALGORITHM AND LIMITS
+The default contour-constrained harmonic interpolation reduces false local
+highs between contour lines. It is a geometric interpolation, with a finite
+grid resolution, not a pumping/recharge model. Sample spacing may increase
+automatically for very large areas; the effective grid size is in the metadata.
+Automatic crossings approximate the contour normal. Manual arrivals are exact
+relative to the selected straight source segment, within numerical precision.
+Wide contour spacing reduces local detail even though it no longer blocks a run.
+Starting width remains a geometric assumption. A highest-contour cap is an
+artificial termination, not a verified divide or validated groundwater catchment.

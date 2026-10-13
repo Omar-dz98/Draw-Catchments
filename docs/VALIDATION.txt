@@ -1,0 +1,43 @@
+Draw Catchments - new drawing / resume repair
+Creator: Omar Brahimi. Tested 13 October 2026.
+
+SCOPE
+Separate main-dialog actions:
+- Start new drawing for selected point: uses current inputs and starts fresh.
+- Resume drawing: retains the existing session's point, starts and both paths.
+Before replacement, Save draft & start new, Discard & start new and Cancel
+protect unfinished work. Failed/cancelled saves and invalid new inputs preserve
+the previous drawing. New point starts do not inherit the old arc endpoints;
+intentionally supplied new start points remain usable.
+No flow-tracing or manual connection geometry algorithm changed in this repair.
+Publication metadata additionally declares NumPy/SciPy and includes a PNG icon.
+
+EXECUTED VALIDATION
+119 automated tests passed in 23.409 seconds using the installed QGIS
+3.36.3-Maidenhead on Windows. Eight new tests cover resume after changing the
+selection, starting another point, draft save/load, save cancellation/failure,
+invalid new inputs, custom arc points, active map-tool cleanup and actual Qt
+Save/Discard/Cancel controls. New drawing was finished as a valid polygon
+containing the newly selected point. Previous geometry, export, CRS and real
+Brandenburg regressions also passed in the same run.
+
+The actual installable ZIP was extracted and loaded through
+qgis.utils.loadPlugin/startPlugin/unloadPlugin. Its real Qt controls generated
+an editable automatic polygon, resumed the original point after selection
+changed, accepted Discard & start new in a real modal dialog, and generated a
+valid manual polygon containing the new point.
+
+Tests use offscreen Qt and a QGIS iface adapter. No native mouse/keyboard test
+in the user's live QGIS window is claimed. Other QGIS versions and operating
+systems have not been tested for this release.
+
+Evidence: outputs/validation_0.1.12_tests.txt and outputs/zip_smoke_test.json.
+The calculations remain preliminary geometric proposals requiring review;
+width, arc and the highest-contour closure are not model-derived capture limits.
+The existing source-data and previous validation documents explain those limits.
+
+PUBLICATION STATUS
+Local ZIP installation is tested. Maintainer contact and repository metadata
+are complete. The repository is public and has Issues enabled; the prepared
+source files must still be uploaded there before QGIS submission.
+No online upload or publication has been performed by this task.

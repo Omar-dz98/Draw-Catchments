@@ -1,0 +1,10 @@
+Draw Catchments screenshots and example output by Omar Brahimi.
+new_or_resume.png: actual offscreen Qt dialog, synthetic test data.
+manual_example.png: Kreuzkrug monitoring station, manual geometric proposal.
+automatic_example.png: Neumannshof monitoring station, automatic geometric proposal.
+Map source: Landesamt fuer Umwelt Brandenburg, groundwater contours and stations,
+spring 2015; downloaded 12 October 2026. EPSG:25833, head in metres NHN.
+Source: https://data.geobasis-bb.de/geofachdaten/Wasser/Grundwasser/gwd_2015.zip
+License: Datenlizenz Deutschland - Namensnennung - Version 2.0
+https://www.govdata.de/dl-de/by-2-0
+Maps are modified presentations. Catchment proposals are not official LfU outputs.

@@ -1,0 +1,14 @@
+LfU Brandenburg: spring 2015 groundwater contours and station Strausberg West.
+Original official vector download: https://data.geobasis-bb.de/geofachdaten/Wasser/Grundwasser/gwd_2015.zip
+Retrieved 12 October 2026; contour revision December 2022.
+Attribution: Daten des Landesamts fuer Umwelt (LfU Brandenburg), 2015.
+License: Datenlizenz Deutschland - Namensnennung - Version 2.0.
+License URL: https://www.govdata.de/dl-de/by-2-0
+
+Subset CRS EPSG:25833. Contour geometry was clipped to a 5 km padded rectangle
+around the station using QGIS; ZLEVEL retained unchanged (metres NHN).
+Station MKZ 34495033: Strausberg West, original point geometry retained;
+observed head 58.27 m NHN on 15 April 2015. It is a monitoring station, not a
+production well. Interpolation is based on contours and does not fit this
+separate point observation. Regional data are a software regression fixture,
+not an independently validated local catchment delineation dataset.

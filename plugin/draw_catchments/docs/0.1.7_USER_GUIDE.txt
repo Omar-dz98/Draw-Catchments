@@ -1,0 +1,63 @@
+DRAW CATCHMENTS 0.1.7 — Created by Omar Brahimi
+
+INSTALL
+Plugins > Manage and Install Plugins > Install from ZIP.
+Choose Draw_Catchments-0.1.7.zip, then restart QGIS. Check version 0.1.7
+in the dialog. ZIP installation does not configure an online update repository.
+
+FINISH A MANUAL DRAWING
+1. Select the original groundwater contours and their head attribute. For the
+   LfU spring 2015 data use ZLEVEL (alias Hydraulic head (m NHN)), never fid.
+2. Pick the desired individual point. Click Draw boundary steps manually at
+   90 degrees. A small movable Manual drawing window stays visible over QGIS.
+3. Draw uphill through successive higher contours. Click Switch side to work
+   on the other side. The window shows both endpoint head values.
+4. Finish both sides on the same contour. Click Finish polygon.
+   The tool closes BOTH ends automatically: along the contour upstream and
+   between the starting points near the station. The dashed orange line previews
+   that downstream closing edge. Do not click back downhill to the station.
+5. Click Export catchment and choose GeoPackage, Shapefile or GeoJSON.
+   Alternatively, Finish & export combines steps 4 and 5.
+
+If closure fails, your paths remain available for correction. The message tells
+you what prevents a polygon, for example unequal terminal heads or a boundary
+that does not enclose the selected point. Invalid polygons are not exported.
+
+SAVE UNFINISHED WORK
+Save drawing draft saves a portable .draft.json file: both paths, undo history,
+selected points, source contours, CRS and settings. It is not yet an EZG polygon.
+Open drawing draft resumes it, including after restarting QGIS.
+Pause / return (or Esc) keeps the drawing in memory; Resume manual drawing
+continues it. Save a draft before closing QGIS. Discard paused drawing explicitly
+clears the in-memory work; saved draft files are retained.
+Backspace undoes, Tab switches sides, Enter finishes. The previous right-click
+shortcuts still work: switch from side 1 to side 2, then finish.
+
+AUTOMATIC GERSDORF EXAMPLE
+Contour layer: Groundwater contours | spring 2015 | ZLEVEL m NHN
+Head field: Hydraulic head (m NHN) / ZLEVEL
+Point: LfU spring 2015 / Gersdorf, Bushaltest. [FID 210]
+Use: One point
+Starting width: Automatic geometric proposal
+Upstream limit: Highest connected contour (follow its shape)
+Default interpolation: Contour-constrained harmonic
+Click Draw catchment, then Export catchment.
+The supplied example reaches the actual 86 m contour, contains the station and
+closes near it automatically. It is a newly calculated example, not a recovery
+or exact digitization of the user's screenshot. The manual example uses guided
+90-degree steps and the Finish & export controls.
+
+EXPORTED DATA
+GeoPackage preserves the edited polygon, original, lateral paths, starts and
+upstream closure. A JSON sidecar preserves full calculation metadata. GeoJSON
+uses WGS84 as required by its export setting; calculation CRS is in the sidecar.
+Edit catchment enables ordinary QGIS vertex editing. Export before closing QGIS;
+saving a QGIS project alone does not make temporary calculation layers permanent.
+
+LIMITATIONS
+The station is a monitoring point, not a claimed production well. Starting width
+is a geometric assumption. Closing on the 86 m contour is an artificial limit,
+not a verified groundwater divide. The calculation follows mapped heads under
+an isotropic assumption; it does not estimate pumping, recharge or capture width.
+Automatic paths follow the interpolated gradient approximately. Manual arrivals
+are perpendicular to source polyline segments; short bends may precede them.

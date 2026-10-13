@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "qgis": "3.36.3-Maidenhead",
+  "version": "0.1.12",
+  "author": "Omar Brahimi",
+  "hover_help_present": true,
+  "individual_point_target_verified": true,
+  "loaded_from_zip": true,
+  "loader": "qgis.utils.loadPlugin/startPlugin/unloadPlugin",
+  "interface": "real Qt widgets; explicit iface adapter; offscreen",
+  "bundled_example_polygon_valid": true,
+  "editable": true,
+  "area_m2": 40481.353486559354,
+  "contour_closure_layer_present": true,
+  "separate_new_and_resume_buttons": true,
+  "resume_keeps_previous_point": true,
+  "new_drawing_uses_new_point": true,
+  "new_point_manual_polygon_valid_and_contains_point": true,
+  "interactive_desktop_tested": false
+}

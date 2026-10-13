@@ -1,0 +1,52 @@
+DRAW CATCHMENTS 0.1.10 — Created by Omar Brahimi
+
+ONLY THE WELL CLOSURE IS ROUNDED
+Manual lateral boundaries use one straight segment per contour interval.
+The entire segment must meet its destination contour at 90 degrees. Direction
+can change at a contour; no spline, smoothing or rounded side connection is used.
+The adjustable rounded arc belongs only to the downstream closure around the
+selected well/monitoring point. The upstream closure follows its chosen contour.
+
+INSTALL
+Save unfinished work first. Install Draw_Catchments-0.1.10.zip using QGIS Plugins
+> Manage and Install Plugins > Install from ZIP, then restart QGIS. The main and
+floating dialogs should both say 0.1.10; the floating mode says Straight 90° segments.
+
+USE
+Choose your contour layer, hydraulic-head field and selected point. Select
+Rounded arc around point for the downstream closure and set depth if desired.
+Start manual drawing. Add next contour accepts the orange straight preview.
+Clicking a farther contour includes intermediate straight steps if feasible.
+Switch side and end both sides on the same connected head contour. Adjust
+Closure at well only / Arc depth in the floating panel: this does not alter the
+lateral segments. Finish & export creates and saves the closed GIS polygon.
+Save drawing draft saves unfinished work; it is not a polygon export.
+
+KREUZKRUG EXAMPLE
+LfU groundwater contours, spring 2015; ZLEVEL; monitoring station Kreuzkrug,
+FID 379, observed head 58.89 m. Choose Manual width = 100 m, Rounded arc, depth
+Automatic. On each side click the 61 m contour: the proposal includes straight
+59, 60 and 61 m connections. Finish & export. This is a tested geometric example,
+not an official or validated EZG. The 61 m upstream closure is a selected limit.
+The wider automatic suggestion (~246 m) has no valid next straight connection
+after 59 m on one side. A smaller width is explicitly chosen for this example;
+the tool does not silently change your width to make a route fit.
+
+IF A CONNECTION IS IMPOSSIBLE
+From a fixed endpoint, a normal to a digitized contour segment may fall outside
+that segment, or the straight route may cross another boundary. No curved or
+diagonal fallback is allowed. Existing work is preserved. Try a different
+contour segment, undo the previous step, or restart with adjusted start positions
+or width. 90 degrees refers to the NEXT contour. A single straight segment cannot
+usually be normal to both nonparallel contours at once. This is why direction
+changes at contours are allowed instead of smoothing between them.
+
+OLDER DRAWINGS
+Curved 0.1.9 drafts remain readable and are never silently straightened. The
+panel identifies the first nonstraight step; undo those steps or start a new
+drawing. Previously exported polygons are not changed by installing the update.
+
+The width and rounded base are geometric assumptions, not pumping-derived
+capture boundaries. Existing automatic gradient tracing is unchanged and uses
+many integration steps; the one-straight-segment-per-contour rule applies to
+manual drawing. Ordinary QGIS vertex edits are unconstrained.

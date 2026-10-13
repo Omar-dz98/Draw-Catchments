@@ -1,0 +1,48 @@
+DRAW CATCHMENTS 0.1.8 — Created by Omar Brahimi
+
+STRICT MANUAL CONNECTIONS
+The earlier tool could draw a long diagonal segment followed by a short normal
+approach. Its 90-degree value described only that final approach. This fallback
+has been removed. Each NEW manual step is now exactly one straight connector
+from the current endpoint to the original destination contour, checked at 90
+degrees against the actual source polyline segment (tolerance 0.000001 degrees).
+
+1. Choose the original contour layer and hydraulic-head field, and pick a point.
+2. Click Draw boundary steps manually at 90 degrees.
+3. Move onto the next higher contour. The click chooses that contour; the tool
+   computes a valid perpendicular foot and snaps the endpoint to it. It may be
+   displaced along the same contour from your mouse position. Inspect the orange
+   preview, purple right-angle mark and displayed measured angle before clicking.
+4. Click to accept the preview. No extra bend is added. Skipped contours,
+   crossing boundaries and non-perpendicular connections are rejected.
+5. Switch side, then Finish polygon or Finish & export as before.
+
+WHEN A STEP IS REJECTED
+A corner of a digitized polyline has no single tangent. From a fixed starting
+point there may be no straight normal whose foot lies inside a contour segment
+and avoids other boundaries. Then no segment is added. Undo to adjust the path,
+choose another connected part of the contour, or revise the starting points.
+The tool does not silently approximate 90 degrees with a short extra bend.
+This strict construction can stop where version 0.1.7 continued with a bend.
+For the screenshot's Gr.Schoenebeck station (FID 397), the default straight
+sequence reaches 54 m and rejects the next 55 m connection. This is not claimed
+to reproduce a complete manual boundary to the higher area in the screenshot.
+
+The 90-degree condition is checked at the DESTINATION contour, in the projected
+calculation CRS. A straight connector cannot generally be normal at both ends
+when successive contours have different directions. The upstream closing arc
+and downstream closing edge are not flow-path steps. Ordinary QGIS vertex edits
+remain unconstrained. Automatic gradient tracing is unchanged and approximate.
+
+SAVED WORK
+Save drawing draft preserves unfinished paths. Open drawing draft resumes them.
+Older drafts containing bends are retained for inspection and undo. The panel
+identifies the first incompatible side and step; finishing is blocked until
+those steps are redrawn. The old file is not modified by loading it.
+Exported polygons from earlier releases are not changed or relabelled as strict.
+
+INSTALL
+Plugins > Manage and Install Plugins > Install from ZIP > Draw_Catchments-0.1.8.zip.
+Restart QGIS and check the 0.1.8 heading and Straight 90-degree mode in the drawing
+controls. See the 0.1.7 guide for polygon finishing, draft recovery and exports.
+The geometric width and preliminary-catchment limitations still apply.

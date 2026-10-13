@@ -1,0 +1,22 @@
+Draw Catchments - interpretation and compatibility
+
+The polygon is a preliminary geometric proposal. Starting width and the rounded
+closure around a well are assumptions. The highest connected contour is an
+artificial closure, not a verified groundwater divide. The plugin does not use
+pumping rates, recharge, anisotropy, travel time or a calibrated groundwater model.
+Contours must describe the appropriate aquifer and conditions, with a consistent
+vertical datum. Sparse, conflicting or incomplete data can prevent construction.
+
+Manual sides use straight steps. Exact normals are preferred; the default allows
+the nearest clear sampled candidate when exact geometry is unavailable. The
+displayed angle is measured, and may differ from 90 degrees. Candidate search is
+numerical and cannot prove a global optimum. Ordinary QGIS vertex edits are free.
+
+Automatic paths follow an interpolated head surface. Analysis extent can expand;
+data limits, flat gradients and explicit calculation limits still matter.
+Temporary results must be exported. Unfinished manual work must be saved as a
+draft before closing QGIS; automatic crash recovery has not been implemented.
+
+Executed tests: QGIS 3.36.3 on Windows. Other QGIS 3 versions, Linux and macOS
+require testing. QGIS 4 / Qt 6 support has not been implemented or claimed.
+NumPy and SciPy are required in QGIS Python. Keep this initial release experimental.
